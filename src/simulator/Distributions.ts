@@ -1,8 +1,9 @@
 import * as jStat from "jstat";
+import {Parser} from "expr-eval";
 
 export interface Distribution {
   name:string;
-  sample():number;
+  sample(samples?:any):number;
 }
 
 export class ConstantDistriubtion implements Distribution {
@@ -78,5 +79,39 @@ export class NormalDistribution implements Distribution {
 
   sample():number {
     return this.distribution.sample();
+  }
+}
+
+export class Choice {
+  private conditionExpression:any;
+
+  constructor(public readonly conditionExpressionString: string, public readonly samplingFunction:(samples?:any)=>number) {
+    const parser = new Parser();
+    this.conditionExpression = parser.parse(conditionExpressionString);
+  }
+
+  isTrue(samples:any):boolean {
+    return this.conditionExpression.evaluate(samples);
+  }
+
+  sample(samples:any) {
+    return this.samplingFunction(samples);
+  }
+}
+
+export class Choices implements Distribution {
+
+
+  constructor(public readonly name:string, public readonly choices: Choice[], private readonly defaultValue = 0) {
+
+  }
+
+  sample(samples:any):number {
+    for (let choice of this.choices) {
+      if(choice.isTrue(samples)) {
+        return choice.sample(samples);
+      }
+    }
+    return this.defaultValue;
   }
 }

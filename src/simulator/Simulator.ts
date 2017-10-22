@@ -14,7 +14,7 @@ export class BasicSimulator implements Simulator {
     while (i++ < iterations) {
       const samples:any = {};
       for (let variable of variables) {
-        samples[variable.name] = variable.sample();
+        samples[variable.name] = variable.sample(samples);
       }
       results.push(
         expression.evaluate(samples)
