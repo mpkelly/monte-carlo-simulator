@@ -12,7 +12,7 @@ module.exports = function(config) {
      * Enable or disable watching files and executing the tests whenever
      * one of the files in the "files" field is changed.
      */
-    autoWatch: true,
+    autoWatch: false,
 
     /*
      * The root path location that will be used to resolve all relative
@@ -41,7 +41,8 @@ module.exports = function(config) {
      * http://karma-runner.github.io/0.13/config/files.html
      */
     files: [
-      "test/**/*.tsx"
+      "test/*.test.ts",
+      "test/*.test.tsx"
     ],
 
     /*
@@ -71,7 +72,7 @@ module.exports = function(config) {
      * npm module to be npm installed and added to the "plugins" field.
      */
     preprocessors: {
-      "test/**/*.tsx": ["webpack"] // Using karma-webpack npm module
+      "test/**/*.test.*": ["webpack"] // Using karma-webpack npm module
     },
 
     /*
@@ -86,7 +87,7 @@ module.exports = function(config) {
      * tests and then exit with an exit code of 0 or 1 depending on whether
      * all tests passed or any tests failed.
      */
-    singleRun: false,
+    singleRun: true,
 
     /*
      * This field is necessary because we are using webpack as a preprocessor.

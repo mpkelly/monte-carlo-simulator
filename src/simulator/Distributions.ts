@@ -65,7 +65,7 @@ export class ExponentialDistribution implements Distribution {
   }
 
   sample():number {
-    return this.distribution.sample();
+    return this.distribution.sample()*100;
   }
 }
 
@@ -100,7 +100,6 @@ export class Choice {
 }
 
 export class Choices implements Distribution {
-
 
   constructor(public readonly name:string, public readonly choices: Choice[], private readonly defaultValue = 0) {
 

@@ -2,7 +2,7 @@
   "name": "monte-carlo-simulator",
   "scripts": {
     "build": "webpack",
-    "test": "karma start"
+    "test": "mocha -r ts-babel-node/register test/**/Example.test.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.0.2",
@@ -18,7 +18,7 @@
     "karma-mocha-reporter": "^2.2.3",
     "karma-sinon": "^1.0.5",
     "karma-webpack": "^2.0.4",
-    "mocha": "^3.5.0",
+    "mocha": "^3.5.3",
     "sinon": "^3.0.0",
     "source-map-loader": "*",
     "webpack": "^3.4.1"
@@ -27,6 +27,7 @@
     "chart.js": "^2.7.0",
     "enzyme": "^2.9.1",
     "expr-eval": "^1.2.0",
+    "glob": "^7.1.2",
     "jstat": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
     "onsenui": "^2.5.1",
@@ -36,6 +37,8 @@
     "react-onsenui": "^1.5.0",
     "react-style-helpers": "git+https://github.com/mpkelly/react-style-helpers.git",
     "react-test-renderer": "^15.6.1",
+    "ts-babel-node": "^1.1.1",
+    "ts-node": "^3.3.0",
     "typescript": "^2.4.2"
   }
 }
